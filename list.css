@@ -9,7 +9,30 @@
 	--lime: #d8e5b2;
 	--coral: #c9664d;
 	--white: #fffefa;
+	--button-text: #fff;
+	--total-border: #c8d3bd;
+	--total-label: #4b5e4b;
+	--delete-hover-bg: #f1e4dd;
+	--delete-hover-ink: #923d2e;
 	font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+}
+
+:root[data-theme="dark"] {
+	color-scheme: dark;
+	--paper: #1d2720;
+	--ink: #edf0e8;
+	--muted: #adb8af;
+	--line: #39473d;
+	--green: #91b486;
+	--green-dark: #aac79d;
+	--lime: #344839;
+	--coral: #e28a70;
+	--white: #27332b;
+	--button-text: #172119;
+	--total-border: #536a55;
+	--total-label: #d6e3cc;
+	--delete-hover-bg: #4b302b;
+	--delete-hover-ink: #ffd6ca;
 }
 
 * { box-sizing: border-box; }
@@ -43,7 +66,29 @@ button, input { font: inherit; }
 	text-transform: uppercase;
 }
 
+.topline-actions {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+}
+
 .brand { color: var(--green); }
+
+.theme-toggle {
+	display: grid;
+	flex: 0 0 38px;
+	width: 38px;
+	height: 38px;
+	place-items: center;
+	border: 1px solid var(--line);
+	border-radius: 50%;
+	background: var(--white);
+	color: var(--ink);
+	cursor: pointer;
+}
+
+.theme-toggle:hover { background: var(--lime); color: var(--green); }
+.theme-toggle:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
 
 .intro {
 	display: flex;
@@ -79,7 +124,7 @@ h1 {
 	min-width: 118px;
 	min-height: 100px;
 	place-content: center;
-	border: 1px solid #c8d3bd;
+	border: 1px solid var(--total-border);
 	border-radius: 4px;
 	background: var(--lime);
 	text-align: center;
@@ -94,7 +139,7 @@ h1 {
 
 .total span {
 	margin-top: 6px;
-	color: #4b5e4b;
+	color: var(--total-label);
 	font-size: 10px;
 	font-weight: 800;
 	letter-spacing: .1em;
@@ -131,7 +176,7 @@ h1 {
 	border: 0;
 	border-radius: 3px;
 	background: var(--green);
-	color: white;
+	color: var(--button-text);
 	font-size: 13px;
 	font-weight: 700;
 	cursor: pointer;
@@ -202,7 +247,7 @@ h2 {
 	cursor: pointer;
 }
 
-.delete-button:hover { background: #f1e4dd; color: #923d2e; }
+.delete-button:hover { background: var(--delete-hover-bg); color: var(--delete-hover-ink); }
 
 .completed-section { padding-left: 26px; border-left: 1px solid var(--line); }
 
@@ -244,6 +289,8 @@ h2 {
 
 @media (max-width: 440px) {
 	.page { width: calc(100% - 28px); }
+	.topline { flex-wrap: wrap; gap: 12px; }
+	.topline-actions { gap: 10px; margin-left: auto; }
 	.intro { flex-wrap: wrap; align-items: flex-start; gap: 18px; padding: 30px 0 24px; }
 	.intro > div:first-child { flex: 1 1 190px; min-width: 0; }
 	h1 { font-size: 36px; }

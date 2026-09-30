@@ -15,7 +15,38 @@ const activeEmpty = document.querySelector("#active-empty");
 const completedEmpty = document.querySelector("#completed-empty");
 const addForm = document.querySelector("#add-form");
 const newTaskInput = document.querySelector("#new-task");
+const themeToggle = document.querySelector("#theme-toggle");
+const themeIcon = document.querySelector("#theme-icon");
+const themeStorageKey = "daybook-theme-v1";
 let tasks;
+let theme = "light";
+
+try {
+	if (localStorage.getItem(themeStorageKey) === "dark") theme = "dark";
+} catch {}
+
+document.documentElement.dataset.theme = theme;
+
+function updateThemeToggle() {
+	const darkMode = theme === "dark";
+	themeIcon.classList.toggle("fa-moon", !darkMode);
+	themeIcon.classList.toggle("fa-sun", darkMode);
+	themeToggle.setAttribute("aria-label", `Switch to ${darkMode ? "light" : "dark"} mode`);
+	themeToggle.setAttribute("title", `Switch to ${darkMode ? "light" : "dark"} mode`);
+	themeToggle.setAttribute("aria-pressed", String(darkMode));
+	document.querySelector('meta[name="theme-color"]').content = darkMode ? "#1d2720" : "#f4f2e9";
+}
+
+themeToggle.addEventListener("click", () => {
+	theme = theme === "dark" ? "light" : "dark";
+	document.documentElement.dataset.theme = theme;
+	try {
+		localStorage.setItem(themeStorageKey, theme);
+	} catch {}
+	updateThemeToggle();
+});
+
+updateThemeToggle();
 
 try {
 	const savedTasks = JSON.parse(localStorage.getItem(storageKey));
