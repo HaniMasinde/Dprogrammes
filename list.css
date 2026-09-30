@@ -72,7 +72,65 @@ button, input { font: inherit; }
 	gap: 14px;
 }
 
-.brand { color: var(--green); }
+.brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 11px;
+	color: var(--ink);
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 23px;
+	font-weight: 700;
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+.brand-mark {
+	position: relative;
+	display: grid;
+	flex: 0 0 42px;
+	width: 42px;
+	height: 42px;
+	place-items: center;
+	border: 1px solid color-mix(in srgb, var(--green), transparent 35%);
+	border-radius: 11px 11px 11px 3px;
+	background: var(--green);
+	color: var(--paper);
+	box-shadow: 0 3px 8px rgb(32 45 38 / 14%);
+	font-size: 29px;
+	font-weight: 700;
+	line-height: 1;
+	animation: mark-pop .7s cubic-bezier(.2, .8, .25, 1.25) both;
+}
+
+.brand-mark::after {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 5px;
+	height: 5px;
+	border-radius: 1px;
+	background: var(--coral);
+	content: "";
+}
+
+.brand-name {
+	display: inline-flex;
+	white-space: nowrap;
+	line-height: 1;
+	animation: wordmark-in .55s ease-out .12s both;
+}
+
+.brand-name-accent { color: var(--green); }
+
+@keyframes mark-pop {
+	from { opacity: 0; transform: translateY(7px) rotate(-12deg) scale(.78); }
+	to { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
+}
+
+@keyframes wordmark-in {
+	from { opacity: 0; transform: translateX(-7px); }
+	to { opacity: 1; transform: translateX(0); }
+}
 
 .theme-toggle {
 	display: grid;
